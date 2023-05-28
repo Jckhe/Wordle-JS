@@ -1,17 +1,25 @@
-import React, { useState, useEffect, ChangeEvent, KeyboardEvent, createRef } from 'react';
+import React, { useState, useEffect, ChangeEvent, KeyboardEvent, createRef, Dispatch, SetStateAction } from 'react';
 
 interface InputProps {
+  current: boolean;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
   ref: React.Ref<HTMLInputElement>;
 }
 
-const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown }, ref) => {
+interface RowProps {
+  id: number;
+  currentRow: number;
+}
+
+const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown, current }, ref) => {
+
   return (
     <input 
       type="text" 
       maxLength={1} 
+      disabled={current === true ? false : true}
       value={value} 
       onChange={onChange} 
       onKeyDown={onKeyDown}
@@ -28,9 +36,10 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
 
 Input.displayName = 'Input';
 
-const Row: React.FC = () => {
+const Row: React.FC<RowProps> = ({id, currentRow}) => {
   const [inputValues, setInputValues] = useState<string[]>(Array(5).fill(''));
   const inputRefs = Array(5).fill(0).map(_ => createRef<HTMLInputElement>());
+  console.log(currentRow === id, id, inputValues)
 
   const handleChange = (index: number) => (e: ChangeEvent<HTMLInputElement>) => {
     const newInputs = [...inputValues];
@@ -56,6 +65,7 @@ const Row: React.FC = () => {
     <div>
       {inputValues.map((value, index) => (
         <Input 
+          current={currentRow === id ? true : false}
           key={index} 
           value={value} 
           onChange={handleChange(index)} 

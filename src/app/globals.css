@@ -30,6 +30,9 @@ body {
   width: 65%;
   height: 60%;
   margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .keyboard {
@@ -39,4 +42,14 @@ body {
   max-width: 60%;
   margin: 0 auto;
   height: 10%;
+}
+
+.inner-board {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55%;
+  height: 70%;
 }
