@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch} from "@/store/hooks";
 import { getDailyWord } from "@/store/slices/game";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import Row from "./row";
 import { useEffect } from "react";
 
 export default function Board() {
@@ -11,6 +12,7 @@ export default function Board() {
   return (
     <div className="board">
       <p>{word}</p>
+      <Row />
     </div>
   )
 }

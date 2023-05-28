@@ -4,6 +4,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { getDailyWord } from "@/store/slices/game";
 import { useEffect } from "react";
 import Board from "./board"
+import Keyboard from "./keyboard";
 
 export default function Game() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ export default function Game() {
   return (
     <div className="game">
       <Board />
+      <Keyboard />
     </div>
   )
 }

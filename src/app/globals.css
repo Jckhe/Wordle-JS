@@ -28,4 +28,15 @@ body {
 .board {
   border: 1px solid red;
   width: 65%;
+  height: 60%;
+  margin-bottom: 2vh;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  max-width: 60%;
+  margin: 0 auto;
+  height: 10%;
 }
