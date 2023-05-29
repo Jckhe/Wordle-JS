@@ -11,6 +11,7 @@ interface GameState {
   currentRow: number;
   letters: Record<string, string>; // A mapping from letter to color
   savedWords: string[]; // An array of saved words
+  gameKey: number; 
 }
 
 const initialState: GameState = {
@@ -25,7 +26,8 @@ const initialState: GameState = {
     ...acc, 
     [letter]: 'white' 
   }), {}),
-  savedWords: Array(6).fill('')
+  savedWords: Array(6).fill(''),
+  gameKey: 0
 };
 
 export const game = createSlice({
@@ -62,13 +64,23 @@ export const game = createSlice({
           state.win = true;
         }
       }
+    },
+    resetGame: (state) => {
+      state.win = initialState.win;
+      state.currentWord = initialState.currentWord;
+      state.darkmode = initialState.darkmode;
+      state.rowsLeft = initialState.rowsLeft;
+      state.currentRow = initialState.currentRow;
+      state.letters = { ...initialState.letters };
+      state.savedWords = initialState.savedWords;
+      state.gameKey = state.gameKey + 1;
     }
   },
 })
 
 
 
-export const { getDailyWord, saveWord } = game.actions;
+export const { getDailyWord, saveWord, resetGame } = game.actions;
 
 //export state properties (if you want to map)
 

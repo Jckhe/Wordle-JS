@@ -84,3 +84,19 @@ body {
   box-shadow: none;
   transform: scale(1.02);
 }
+
+.playAgainBtn {
+  background-color: green;
+  height: 10%;
+  outline: none!important;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.55%;
+}
+
+.winner-message {
+  color: green;
+  font-size: 2rem;
+  position: absolute;
+}

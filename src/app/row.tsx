@@ -21,6 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
   const [bgColor, updateColor] = useState<string>('');
   const letters = useSelector((state: RootState) => state.game.letters); 
   const victory = useSelector((state: RootState) => state.game.win);
+  const key = useSelector((state: RootState) => state.game.gameKey);
 
   useEffect(() => {
     if ((id < current) && value) {
@@ -29,6 +30,11 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
       updateColor(letters[value])
     }
   }, [id, current, value, letters])
+
+  //reset game stuff
+  useEffect(() => {
+    updateColor('');
+  }, [key])
 
 
   return (
@@ -57,6 +63,7 @@ const Row: React.FC<RowProps> = ({id}) => {
   const inputRefs = Array(5).fill(0).map(_ => createRef<HTMLInputElement>());
   const currentRow = useSelector((state: RootState) => state.game.currentRow);
   const savedWords = useSelector((state: RootState) => state.game.savedWords);
+  const key = useSelector((state: RootState) => state.game.gameKey);
   // const savedWords = useSelector((state: RootState) => state.game.savedWords);
   // const isDisabled = savedWords[id] != null;
 
@@ -101,12 +108,18 @@ const Row: React.FC<RowProps> = ({id}) => {
       inputRefs[index-1].current?.focus();
     }
   }
+
   useEffect(() => {
     if (currentRow === id) {
       inputRefs[0].current?.focus();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRow]);
+
+  //reset game stuff
+  useEffect(() => {
+    setInputValues(Array(5).fill(''));
+  }, [key])
 
   return (
     <div className={`row ${id}`}>
