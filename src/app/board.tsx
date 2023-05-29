@@ -15,7 +15,6 @@ export default function Board() {
   return (
     <div className="board">
       <div className="inner-board">
-        <p>{word}</p>
         {rows}
       </div>
     </div>

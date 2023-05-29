@@ -21,14 +21,9 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
       maxLength={1} 
       disabled={current === true ? false : true}
       value={value} 
-      onChange={onChange} 
+      onChange={onChange}
+      className="charInput" 
       onKeyDown={onKeyDown}
-      style={{
-        color: 'black',
-        width: '20px',
-        marginRight: '10px',
-        textAlign: 'center'
-      }} 
       ref={ref}
     />
   );
@@ -62,7 +57,7 @@ const Row: React.FC<RowProps> = ({id, currentRow}) => {
   }, []);
 
   return (
-    <div>
+    <div className={`row ${id}`}>
       {inputValues.map((value, index) => (
         <Input 
           current={currentRow === id ? true : false}
