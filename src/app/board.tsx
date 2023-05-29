@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Board() {
   const word = useSelector((state: RootState) => state.game.currentWord);
-  const [currentRow, updateRow] = useState(0);
-  const rows = Array.from({length: 5}, (_, index) => <Row key={index} id={index} currentRow={currentRow} />);
+  const rows = Array.from({length: 6}, (_, index) => <Row key={index} id={index} />);
 
 
   return (
