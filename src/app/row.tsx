@@ -5,31 +5,46 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent, createRef, Disp
 import { useDispatch, useSelector } from 'react-redux';
 
 interface InputProps {
-  current: boolean;
+  current: number;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
   ref: React.Ref<HTMLInputElement>;
+  id: number;
 }
 
 interface RowProps {
   id: number;
 }
 
-const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown, current }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown, current, id }, ref) => {
+  const [bgColor, updateColor] = useState<string>('');
+  const letters = useSelector((state: RootState) => state.game.letters); 
+  const victory = useSelector((state: RootState) => state.game.win);
+
+  useEffect(() => {
+    if ((id < current) && value) {
+      console.log("Valid submission: ", value)
+      //if valid then we will update the color accordingly
+      updateColor(letters[value])
+    }
+  }, [id, current, value, letters])
 
 
   return (
     <input 
       type="text" 
       maxLength={1} 
-      disabled={current === true ? false : true}
+      disabled={current !== id || victory ? true : false}
       value={value} 
       onChange={onChange}
       className="charInput" 
       onKeyDown={onKeyDown}
+      style={{
+        backgroundColor: bgColor,
+      }}
       ref={ref}
-      autoFocus={current}
+      autoFocus={current === id}
     />
   );
 });
@@ -97,7 +112,8 @@ const Row: React.FC<RowProps> = ({id}) => {
     <div className={`row ${id}`}>
       {inputValues.map((value, index) => (
         <Input 
-          current={currentRow === id ? true : false}
+          current={currentRow}
+          id={id}
           key={index} 
           value={value} 
           onChange={handleChange(index)} 
