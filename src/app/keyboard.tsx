@@ -1,9 +1,12 @@
 "use client";
+import { RootState } from "@/store/store";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Keyboard = () => {
   // Create array of all letters in alphabet
-  const alphabet = Array.from({length: 26}, (_, i) => String.fromCharCode(i + 97));
+  const alphabet = Array.from({length: 26}, (_, i) => String.fromCharCode(i + 97).toUpperCase());
+  const letters = useSelector((state: RootState) => state.game.letters);
 
   // Function to handle click of a key
   const handleClick = (letter: any) => {
@@ -21,7 +24,7 @@ const Keyboard = () => {
             margin: "0.1vw", 
             fontSize: "2vmin",
             color: "black",
-            backgroundColor: "#f0f0f0",
+            backgroundColor: `${letters[letter]}`,
             border: "0.1vw solid #ddd",
             borderRadius: "0.5vw",
             display: "flex",

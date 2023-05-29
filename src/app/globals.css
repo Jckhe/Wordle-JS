@@ -82,4 +82,5 @@ body {
 .charInput:focus {
   outline: none;
   box-shadow: none;
+  transform: scale(1.02);
 }
