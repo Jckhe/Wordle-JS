@@ -26,7 +26,7 @@ body {
 }
 
 .board {
-  border: 1px solid red;
+  border: 0px solid red;
   width: 65%;
   height: 60%;
   margin-bottom: 2vh;
@@ -73,6 +73,13 @@ body {
   margin-right: 0.125%;
   margin-left: 0.125%;
   height: 95%;
+  font-size: 1.5rem;
   border: 0px solid green;
   text-align: center;
+  caret-color: transparent;
+}
+
+.charInput:focus {
+  outline: none;
+  box-shadow: none;
 }

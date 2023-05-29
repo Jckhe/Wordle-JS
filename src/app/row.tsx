@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, KeyboardEvent, createRef, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, ChangeEvent, KeyboardEvent, createRef, Dispatch, SetStateAction, useImperativeHandle, useRef } from 'react';
 
 interface InputProps {
   current: boolean;
@@ -15,6 +15,7 @@ interface RowProps {
 
 const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown, current }, ref) => {
 
+
   return (
     <input 
       type="text" 
@@ -25,6 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
       className="charInput" 
       onKeyDown={onKeyDown}
       ref={ref}
+      autoFocus={current}
     />
   );
 });
@@ -38,7 +40,7 @@ const Row: React.FC<RowProps> = ({id, currentRow}) => {
 
   const handleChange = (index: number) => (e: ChangeEvent<HTMLInputElement>) => {
     const newInputs = [...inputValues];
-    newInputs[index] = e.target.value;
+    newInputs[index] = e.target.value.toUpperCase();
     setInputValues(newInputs);
 
     if (e.target.value !== "" && inputRefs[index+1]) {
