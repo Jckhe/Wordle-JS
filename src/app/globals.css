@@ -1,3 +1,51 @@
+/* Extra small devices (phones, up to 600px) */
+@media (max-width: 600px) {
+  /* Styles */
+  .board {
+    width: 95.5%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  /* Styles */
+  .charInput {
+    width: 30%;
+  }
+
+  .board {
+    width: 85.5%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (max-width: 768px) {
+  /* Styles */
+
+
+  .board {
+    width: 97.5%;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Styles */
+  .board {
+    width: 75%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles */
+  .board {
+    width: 65%;
+  }
+}
+
+
+
+
 body {
   background-color: black;
   display: flex;
@@ -26,8 +74,7 @@ body {
 }
 
 .board {
-  border: 0px solid red;
-  width: 65%;
+  border: 1px solid red;
   height: 60%;
   margin-bottom: 2vh;
   display: flex;
