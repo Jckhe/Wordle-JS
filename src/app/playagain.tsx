@@ -1,6 +1,7 @@
 "use client"
 import { resetGame } from "@/store/slices/game";
 import { useDispatch } from "react-redux";
+import { Button } from "@mui/material"
 
 
 
@@ -12,7 +13,7 @@ const PlayAgain = () => {
     className="playAgainBtn"
     onClick={() => dispatch(resetGame())}
     >
-      Play Again?
+      Play Again
     </button>
   )
 }

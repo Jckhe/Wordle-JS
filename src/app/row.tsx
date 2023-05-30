@@ -15,6 +15,7 @@ interface InputProps {
 
 interface RowProps {
   id: number;
+  invalidWord: Dispatch<SetStateAction<boolean>>;
 }
 
 const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ value, onChange, onKeyDown, current, id }, ref) => {
@@ -57,7 +58,7 @@ const Input = React.forwardRef<HTMLInputElement, Omit<InputProps, 'ref'>>(({ val
 
 Input.displayName = 'Input';
 
-const Row: React.FC<RowProps> = ({id}) => {
+const Row: React.FC<RowProps> = ({id, invalidWord}) => {
   const dispatch = useDispatch();
   const [inputValues, setInputValues] = useState<string[]>(Array(5).fill(''));
   const inputRefs = Array(5).fill(0).map(_ => createRef<HTMLInputElement>());
@@ -98,6 +99,7 @@ const Row: React.FC<RowProps> = ({id}) => {
           // Display some kind of message or indication that the word is invalid
           //nothing homie
           console.log("Invalid Word: " + word);
+          invalidWord(true);
         }
       } else {
         // Display some kind of message or indication that the word has been previously submitted

@@ -67,7 +67,6 @@ export const game = createSlice({
     },
     resetGame: (state) => {
       state.win = initialState.win;
-      state.currentWord = initialState.currentWord;
       state.darkmode = initialState.darkmode;
       state.rowsLeft = initialState.rowsLeft;
       state.currentRow = initialState.currentRow;
